@@ -1,4 +1,4 @@
-package com.qa.casestudy;
+package com.bootsnipp;
 
 import static org.testng.Assert.assertTrue;
 
