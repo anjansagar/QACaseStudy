@@ -1,5 +1,7 @@
 package com.qa.casestudy;
 
+import static org.testng.Assert.assertTrue;
+
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -27,7 +29,7 @@ public class LoginParameterizedTest {
 	}
 
 	@Test(dataProvider="testData")
-	public void testLogin(String username, String password) {
+	public void testLogin(String username, String password, String errorMessage) {
 		String title = driver.getTitle();
 		Assert.assertTrue(title.equals("Login to free code playground for Bootstrap"), "Assert for page Title");
 		WebElement uname = driver.findElement(By.name("email"));
@@ -37,18 +39,22 @@ public class LoginParameterizedTest {
 		pword.clear();
 		pword.sendKeys(password);
 		driver.findElement(By.cssSelector("input[value='Login']")).click();
+		
+		if(!(errorMessage.equals("")) && driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).isDisplayed()) {
+			assertTrue(errorMessage.equals(driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText()));
+		}
 	}
 
 	@DataProvider
 	public Object[][] testData(){
 		Object[][] testCredentials = new Object[][]{
-			{"binnujesudasan@gmail.com","HelloWorld"},
-			{"binnujesudasan1@gmail.com","HelloWorld"},
-			{"binnujesudasan1@gmail.com","abc@xyz"},
-			{"binnujesudasan@gmail.com","123@xyz"}, 
-			{"",""}, 
-			{"","123@xyz"},
-			{"binnujesudasan@gmail.com",""}}; 
+			{"binnujesudasan@gmail.com","HelloWorld","E-mail or password was incorrect, please try again"},
+			{"binnujesudasan1@gmail.com","HelloWorld","E-mail or password was incorrect, please try again"},
+			{"binnujesudasan1@gmail.com","abc@xyz","E-mail or password was incorrect, please try again"},
+			{"binnujesudasan@gmail.com","123@xyz",""}, 
+			{"","","E-mail or password was incorrect, please try again"}, 
+			{"","123@xyz","E-mail or password was incorrect, please try again"},
+			{"binnujesudasan@gmail.com","","E-mail or password was incorrect, please try again"}}; 
 			return testCredentials;
 	}
 
