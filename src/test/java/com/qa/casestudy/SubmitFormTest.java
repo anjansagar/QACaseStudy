@@ -2,6 +2,9 @@ package com.qa.casestudy;
 
 import static org.testng.Assert.assertTrue;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
@@ -46,7 +49,7 @@ public class SubmitFormTest
 		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
 	}
-	
+
 	@Test
 	public void submitLoginFormUsingSubmitMethod()
 	{
@@ -74,6 +77,22 @@ public class SubmitFormTest
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
 	}
 	
+	@Test
+	public void submitLoginFormUsingRobotClass() throws AWTException
+	{
+		Robot robot = new Robot();
+		WebElement username = driver.findElement(By.name("email"));
+		username.clear();
+		username.sendKeys("binnujesudasan@gmail.com");
+		WebElement password = driver.findElement(By.name("password"));
+		password.clear();
+		password.sendKeys("HelloWorld");
+		robot.keyPress(KeyEvent.VK_ENTER);
+		robot.keyRelease(KeyEvent.VK_ENTER);
+		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
+		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
+	}
+
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();
