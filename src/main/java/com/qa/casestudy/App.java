@@ -1,4 +1,4 @@
-package com.qa.casestudy.QACaseStudy;
+package com.qa.casestudy;
 
 /**
  * Hello world!
