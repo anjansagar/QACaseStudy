@@ -44,7 +44,12 @@ public class LoginParameterizedTest {
 			assertTrue(errorMessage.equals(driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText()));
 		}
 	}
-
+   
+	/**
+	 * 
+	 * Provides all the combinations of credentials
+	 * Only "binnujesudasan@gmail.com","123@xyz", "" is the valid credential combination
+	 */
 	@DataProvider
 	public Object[][] testData(){
 		Object[][] testCredentials = new Object[][]{
