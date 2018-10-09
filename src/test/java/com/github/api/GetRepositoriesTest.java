@@ -17,23 +17,23 @@ public class GetRepositoriesTest {
 		response = RestAssured.get(BASE_URI+"users/binnujesudasan/repos");
 	}
 	
-	@Test
+	@Test(enabled=true)
 	public void verifyResponseCode() {
 		int responseCode = response.getStatusCode();
 		Assert.assertTrue(responseCode == 200);
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void printResponse() {
 		response.prettyPrint();
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void verifyRepositoryCount() {
 		response.getBody().jsonPath().get("");
 	}
 	
-	@Test(enabled=true)
+	@Test(enabled=false)
 	public void readResponseHeaders() {
 		
 	}
