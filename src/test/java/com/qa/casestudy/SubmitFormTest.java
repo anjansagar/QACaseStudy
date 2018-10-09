@@ -45,6 +45,20 @@ public class SubmitFormTest
 		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
 	}
+	
+	@Test
+	public void submitLoginFormUsingSubmitMethod()
+	{
+		WebElement username = driver.findElement(By.name("email"));
+		username.clear();
+		username.sendKeys("binnujesudasan@gmail.com");
+		WebElement password = driver.findElement(By.name("password"));
+		password.clear();
+		password.sendKeys("HelloWorld");
+		password.submit();
+		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
+		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
+	}
 
 	@AfterMethod
 	public void tearDown() {
