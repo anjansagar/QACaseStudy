@@ -5,6 +5,7 @@ import static org.testng.Assert.assertTrue;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -60,6 +61,19 @@ public class SubmitFormTest
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
 	}
 
+	@Test
+	public void submitLoginFormUsingKeysEnum()
+	{
+		WebElement username = driver.findElement(By.name("email"));
+		username.clear();
+		username.sendKeys("binnujesudasan@gmail.com");
+		WebElement password = driver.findElement(By.name("password"));
+		password.clear();
+		password.sendKeys("HelloWorld",Keys.ENTER);
+		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
+		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
+	}
+	
 	@AfterMethod
 	public void tearDown() {
 		driver.quit();
