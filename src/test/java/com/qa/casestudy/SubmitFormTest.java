@@ -26,6 +26,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class SubmitFormTest 
 {
 	WebDriver driver;
+	WebElement username;
+	WebElement password;
 
 	@BeforeMethod
 	public void setUp() {
@@ -34,17 +36,21 @@ public class SubmitFormTest
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		driver.get("https://bootsnipp.com/login");
+		feedUsernameAndPassword();
+	}
+
+	public void feedUsernameAndPassword() {
+		username = driver.findElement(By.name("email"));
+		username.clear();
+		username.sendKeys("binnujesudasan@gmail.com");
+		password = driver.findElement(By.name("password"));
+		password.clear();
+		password.sendKeys("HelloWorld");
 	}
 
 	@Test
 	public void submitLoginFormUsingClickMethod()
 	{
-		WebElement username = driver.findElement(By.name("email"));
-		username.clear();
-		username.sendKeys("binnujesudasan@gmail.com");
-		WebElement password = driver.findElement(By.name("password"));
-		password.clear();
-		password.sendKeys("HelloWorld");
 		driver.findElement(By.cssSelector("input[value='Login']")).click();
 		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
@@ -53,12 +59,6 @@ public class SubmitFormTest
 	@Test
 	public void submitLoginFormUsingSubmitMethod()
 	{
-		WebElement username = driver.findElement(By.name("email"));
-		username.clear();
-		username.sendKeys("binnujesudasan@gmail.com");
-		WebElement password = driver.findElement(By.name("password"));
-		password.clear();
-		password.sendKeys("HelloWorld");
 		password.submit();
 		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
@@ -67,26 +67,15 @@ public class SubmitFormTest
 	@Test
 	public void submitLoginFormUsingKeysEnum()
 	{
-		WebElement username = driver.findElement(By.name("email"));
-		username.clear();
-		username.sendKeys("binnujesudasan@gmail.com");
-		WebElement password = driver.findElement(By.name("password"));
-		password.clear();
-		password.sendKeys("HelloWorld",Keys.ENTER);
+		password.sendKeys(Keys.ENTER);
 		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
 		assertTrue(errorMessage.equals("E-mail or password was incorrect, please try again"));
 	}
-	
+
 	@Test
 	public void submitLoginFormUsingRobotClass() throws AWTException
 	{
 		Robot robot = new Robot();
-		WebElement username = driver.findElement(By.name("email"));
-		username.clear();
-		username.sendKeys("binnujesudasan@gmail.com");
-		WebElement password = driver.findElement(By.name("password"));
-		password.clear();
-		password.sendKeys("HelloWorld");
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		String errorMessage  = driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText();
