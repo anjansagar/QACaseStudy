@@ -42,6 +42,8 @@ public class LoginParameterizedTest {
 		
 		if(!(errorMessage.equals("")) && driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).isDisplayed()) {
 			assertTrue(errorMessage.equals(driver.findElement(By.xpath("//*[@id=\"loginform\"]/fieldset/div[1]/h5")).getText()));
+		}else {
+			assertTrue(driver.getTitle().equals("Profile"),"Asser for page title");
 		}
 	}
    
