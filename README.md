@@ -1,11 +1,8 @@
 # QACaseStudy
 
-1. Please read the documentation of the GitHub API at < https://developer.github.com/v3 >. Suppose that you worked with a team that was tasked with implementing this specification.
-	a. What concerns would you have from a testing perspective?
-	b. How would you go about tackling the QA for this work?
-	c. What sort of tests would be worth describing or worth automating?
-	d. What tools would you use?
-	e. Please select an endpoint to test and implement a test suite for that endpoint.You may choose a tech stack of your choice for the tests.
+ANSWERS:
+
+Point-1:
 
 Concerns/Doubts: 
 1.	What are all the schema changes made as part of version 3/ If there are any changes?
@@ -32,3 +29,16 @@ Tests:
 Tools: [Java, Rest Assured, TestNG, Jenkins]/[JMeter/Ant/Jenkins]
 
 Endpoint: https://api.github.com/ users/binnujesudasan/repos
+
+Point-2:
+
+Tests can be found at below locations.
+
+https://github.com/binnujesudasan/QACaseStudy/tree/master/src/test/java/com/bootsnipp
+https://github.com/binnujesudasan/QACaseStudy/tree/master/src/test/java/com/github/api
+
+Point-3:
+
+Please refer to the Test cases in the below location.
+
+https://github.com/binnujesudasan/QACaseStudy/blob/master/Loyalty_App_Test_Cases.pdf
