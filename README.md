@@ -26,7 +26,7 @@ Tests:
 3.	Load Testing
 4.	Security Testing
 
-Tools: [Java, Rest Assured, TestNG, Jenkins]/[JMeter/Ant/Jenkins]
+Tools: [Java, Rest Assured, TestNG, Jenkins]/[JMeter, Ant, Jenkins]
 
 Endpoint: https://api.github.com/ users/binnujesudasan/repos
 
